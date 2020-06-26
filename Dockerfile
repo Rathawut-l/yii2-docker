@@ -1,4 +1,4 @@
-FROM php:7.2-fpm
+FROM php:7.4-fpm
 
 RUN apt-get update && apt-get install -y \
         libfreetype6-dev \
@@ -10,10 +10,12 @@ RUN apt-get update && apt-get install -y \
         libmagickwand-dev \
         imagemagick \
         ghostscript \
+        libzip-dev \
+        libonig-dev \
             --no-install-recommends
 
 RUN docker-php-ext-install zip intl mbstring pdo_mysql exif bcmath \
-    && docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ \
+    && docker-php-ext-configure gd --with-freetype=/usr/include/ --with-jpeg=/usr/include/ \
     && docker-php-ext-install gd \
     && docker-php-ext-configure pgsql -with-pgsql=/usr/local/pgsql \
     && docker-php-ext-install \
