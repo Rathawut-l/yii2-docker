@@ -22,7 +22,8 @@ RUN docker-php-ext-install zip intl mbstring pdo_mysql exif bcmath \
         pdo \
         pdo_pgsql \
         pgsql \
-        opcache
+        opcache \
+        sockets
 
 RUN pecl install -o -f xdebug imagick \
     && rm -rf /tmp/pear
